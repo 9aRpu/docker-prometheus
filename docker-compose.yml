@@ -55,7 +55,7 @@ services:
    volumes: 
      - ./alertmanager/:/etc/alertmanager/
    command:
-     - '--config.file=/etc/alertmanager/config-email.yml'
+     - '--config.file=/etc/alertmanager/config.yml'
      - '--storage.path=/alertmanager'
      - '--web.listen-address=0.0.0.0:9093'
    restart: unless-stopped
@@ -74,7 +74,7 @@ services:
      - monitor-net
 
   grafana:
-   image: grafana/grafana:latest
+   image: grafana/grafana:latest-ubuntu
    container_name: grafana
    volumes:
      - grafana_data:/var/lib/grafana

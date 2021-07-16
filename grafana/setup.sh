@@ -30,17 +30,15 @@ grafana_api() {
 }
 
 wait_for_api() {
-  while ! grafana_api GET /api/user/preferences
-  do
+  while ! grafana_api GET /api/user/preferences; do
     sleep 5
-  done 
+  done
 }
 
 install_datasources() {
   local datasource
 
-  for datasource in ${DATASOURCES_PATH}/*.json
-  do
+  for datasource in ${DATASOURCES_PATH}/*.json; do
     if [[ -f "${datasource}" ]]; then
       echo "Installing datasource ${datasource}"
       if grafana_api POST /api/datasources "" "${datasource}"; then
@@ -55,20 +53,19 @@ install_datasources() {
 install_dashboards() {
   local dashboard
 
-  for dashboard in ${DASHBOARDS_PATH}/*.json
-  do
+  for dashboard in ${DASHBOARDS_PATH}/*.json; do
     if [[ -f "${dashboard}" ]]; then
       echo "Installing dashboard ${dashboard}"
 
-      echo "{\"dashboard\": `cat $dashboard`}" > "${dashboard}.wrapped"
+      echo "{\"dashboard\": $(cat $dashboard)}" >"/tmp/dashboard.wrapped"
 
-      if grafana_api POST /api/dashboards/db "" "${dashboard}.wrapped"; then
+      if grafana_api POST /api/dashboards/db "" "/tmp/dashboard.wrapped"; then
         echo "installed ok"
       else
         echo "install failed"
       fi
 
-      rm "${dashboard}.wrapped"
+      rm "/tmp/dashboard.wrapped"
     fi
   done
 }

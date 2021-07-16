@@ -13,18 +13,18 @@ route:
 receivers:
 - name: email-1
   email_configs:
-  - to: <to-email>
-    from: <from-email>
-    smarthost: <smtp:port>
-    auth_username: "<user-name>"
-    auth_identity: "<user-name>"
-    auth_password: "<user-app-specific-password>"
+  - to: service-registration@protonmail.com
+    from: thysverkuylen@gmail.com
+    smarthost: smtp.gmail.com:587
+    auth_username: "thysverkuylen@gmail.com"
+    auth_identity: "thysverkuylen@gmail.com"
+    auth_password: "obzefdlmxajtxeny"
 
 - name: email-2
   email_configs:
-  - to: <to-email>
-    from: <from-email>
-    smarthost: <smtp:port>
-    auth_username: "<user-name>"
-    auth_identity: "<user-name>"
-    auth_password: "<user-app-specific-password>"
+  - to: service-registration@protonmail.com
+    from: thysverkuylen@gmail.com
+    smarthost: smtp.gmail.com:587
+    auth_username: "thysverkuylen@gmail.com"
+    auth_identity: "thysverkuylen@gmail.com"
+    auth_password: "obzefdlmxajtxeny"
